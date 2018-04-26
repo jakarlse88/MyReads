@@ -1,0 +1,23 @@
+.book {
+    border: 2px dashed red;
+    display: inline-block;
+}
+
+.book figure {
+    padding: 1em;
+    margin: 0;
+}
+
+.book-title {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+.book-author {
+    font-size: .8em;
+    color: grey;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
