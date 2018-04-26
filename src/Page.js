@@ -34,7 +34,7 @@ export function Body({ children }) {
 export function Shelf({ shelfName, children }) {
     return (
         <Fragment>
-            <section>
+            <section className="shelf-container">
                 <h2 className="shelf-header">{shelfName}</h2>
                 <div class="book-shelf">
                     {children}

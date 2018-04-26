@@ -1,11 +1,11 @@
 .book {
-    border: 2px dashed red;
+    /* border: 2px dashed red; */
     display: inline-block;
 }
 
 .book figure {
     padding: 1em;
-    margin: 0;
+    margin: 0 0 0 auto;
 }
 
 .book-title {
@@ -20,4 +20,27 @@
     font-weight: bold;
     padding: 0;
     margin: 0;
+}
+
+.book-control {
+    background-color: green;
+    z-index: 2;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    right: 25px;
+}
+
+.book-control:hover {
+    background-color: #444;
 }

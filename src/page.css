@@ -13,6 +13,13 @@
 
 .shelf-header {
     text-align: center;
+    padding: .1em;
+    border-bottom: 1px solid grey;
+}
+
+.shelf-container {
+    width: 90%;
+    margin: 0 auto;   
 }
 
 .book-shelf {
