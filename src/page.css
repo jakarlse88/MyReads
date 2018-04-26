@@ -1,0 +1,37 @@
+.site-header {
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: #333;
+    margin: 0;
+}
+
+.site-header h1 {
+    margin: 0;
+    padding: .5em 0;
+}
+
+.shelf-header {
+    text-align: center;
+}
+
+.book-shelf {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.site-footer {
+    background-color: #333;
+    color: white;
+    font-size: .8em;
+    text-align: center;
+    margin: 1em 0 0;
+}
+
+.site-footer p {
+    margin: 0;
+    padding: .5em 0;
+}
