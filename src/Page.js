@@ -36,7 +36,7 @@ export function Shelf({ shelfName, children }) {
         <Fragment>
             <section className="shelf-container">
                 <h2 className="shelf-header">{shelfName}</h2>
-                <div class="book-shelf">
+                <div className="book-shelf">
                     {children}
                 </div>
             </section>

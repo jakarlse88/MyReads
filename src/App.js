@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Book from './Book';
 import { Page, Header, Body, Shelf, Footer } from './Page';
+import { get, getAll, update, search } from './BooksAPI';
 
 class App extends Component {
   render() {
