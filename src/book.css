@@ -18,14 +18,15 @@
     object-fit: cover;
     width: 100%;
     height: 200px;
+    box-sizing: content-box;
 }
 
 .book figure figcaption {
-    /* margin: -1em 0; */
     text-align: center;
 }
 
 .book-title {
+    margin: -2em 0 0;
     font-size: .8em;
     font-weight: bold;
 }
@@ -33,8 +34,6 @@
 .book-author {
     font-size: .8em;
     color: grey;
-    /* padding: 0;
-    margin: 0; */
 }
 
 .book-control {
@@ -54,7 +53,7 @@
     margin: 0;
     text-align: center;
     position: relative;
-    right: -100px;
+    right: -125px;
     bottom: 35px;
 }
 
