@@ -6,11 +6,17 @@ class Book extends Component {
         return (
             <article className="book">
                 <figure>
-                    <img src="http://via.placeholder.com/200x275" alt="book cover" />
+                    <img src={this.props.coverURL} alt="book cover" />
                     <button className="book-control">+</button>
                     <figcaption>
-                        <p className="book-title">Book Title</p>
-                        <p className="book-author">Book Author</p>
+                        <p className="book-title">
+                            {this.props.title}
+                        </p>
+                        <div className="book-author">
+                            {this.props.author.map(( author ) => (
+                                <p>{author}</p>
+                            ))}
+                        </div>
                     </figcaption>    
                 </figure>
             </article>

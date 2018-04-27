@@ -31,19 +31,6 @@ export function Body({ children }) {
     )
 }
 
-export function Shelf({ shelfName, children }) {
-    return (
-        <Fragment>
-            <section className="shelf-container">
-                <h2 className="shelf-header">{shelfName}</h2>
-                <div className="book-shelf">
-                    {children}
-                </div>
-            </section>
-        </Fragment>        
-    )
-}
-
 export function Footer({ content }) {
     return (
         <Fragment>
