@@ -64,7 +64,7 @@ class Book extends Component {
                         </p>
                         <div className="book-author">
                             {this.props.author.map(( author ) => (
-                                <p>{author}</p>
+                                <p key={author}>{author}</p>
                             ))}
                         </div>
                     </figcaption>    
