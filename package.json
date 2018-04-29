@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome": "^1.1.5",
     "@fortawesome/fontawesome-free-solid": "^5.0.10",
     "@fortawesome/react-fontawesome": "^0.0.18",
+    "escape-string-regexp": "^1.0.5",
     "font-awesome": "^4.7.0",
     "form-serialize": "^0.7.2",
     "npm": "^6.0.0",
@@ -14,7 +15,8 @@
     "react-dom": "^16.3.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "sort-by": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

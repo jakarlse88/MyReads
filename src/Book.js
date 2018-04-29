@@ -62,11 +62,22 @@ class Book extends Component {
                         <p className="book-title">
                             {this.props.title}
                         </p>
-                        <div className="book-author">
-                            {this.props.author.map(( author ) => (
-                                <p key={author}>{author}</p>
-                            ))}
-                        </div>
+                        {this.props.hasOwnProperty('author') ? (
+                            <div className="book-author">
+                                {this.props.author.map(( author ) => (
+                                    <p key={author}>{author}</p>
+                                ))} 
+                            </div> 
+                            ) : this.props.hasOwnProperty('authors') ? (
+                                <div className="book-author">
+                                {this.props.authors.map(( author ) => (
+                                    <p key={author}>{author}</p>
+                                ))} 
+                            </div> 
+                            ) : (
+                                null
+                            )
+                        }
                     </figcaption>    
                 </figure>
             </article>

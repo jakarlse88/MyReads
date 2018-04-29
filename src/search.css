@@ -2,7 +2,7 @@
     flex-direction: row;
     align-items: center;
     background-color: white;
-    z-index: 1;
+    z-index: 3;
     position: fixed;
     top: 0;
     width: 100%;
@@ -21,7 +21,12 @@
 }
 
 .search-books {
+    width: 100%;
+}
+
+.search-books input {
     border: none;
     line-height: 1.2em;
     font-size: 1em;
+    width: 100%;
 }
