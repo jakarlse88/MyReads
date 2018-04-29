@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Page, Header, Body, Footer } from './Page';
 import { get, getAll, update, search } from './BooksAPI';
 import Shelf from './Shelf';
+import './misc.css';
 
 class MainPage extends Component {
     state = {
-        currentlyReading: [],
-        wantToRead: [],
-        haveRead: [],
         allBooks: []
     };
 
@@ -40,6 +39,10 @@ class MainPage extends Component {
                         book.shelf === 'read'
                     ))}
                 />
+                <Link
+                    to="/search"
+                    className="search-page-btn"
+                >Search</Link>
                 <Footer content="A FEND Project" />
             </Body>
         </Page>

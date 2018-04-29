@@ -1,0 +1,10 @@
+.search-page-btn {
+    padding: .5em 1em;
+    position: fixed;
+    right: 2em;
+    bottom: 2em;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
