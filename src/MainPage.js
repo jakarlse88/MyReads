@@ -22,12 +22,26 @@ class MainPage extends Component {
           <Page>
             <Header title="MyReads" />
             <Body>
-              <Shelf 
-                shelfName="Currently Reading"
-                books = {this.state.allBooks}
-              />
+                <Shelf 
+                    shelfName="Currently Reading"
+                    books = {this.state.allBooks.filter(( book ) => (
+                        book.shelf === 'currentlyReading'
+                    ))}
+                />
+                <Shelf
+                    shelfName="Want to Read"
+                    books = {this.state.allBooks.filter(( book ) => (
+                        book.shelf === 'wantToRead'
+                    ))}
+                />
+                <Shelf
+                    shelfName="Have Read"
+                    books = {this.state.allBooks.filter(( book ) => (
+                        book.shelf === 'read'
+                    ))}
+                />
+                <Footer content="A FEND Project" />
             </Body>
-            <Footer content="A FEND Project" />
         </Page>
         );
     }
