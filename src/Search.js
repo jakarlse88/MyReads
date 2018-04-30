@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import serializeForm from 'form-serialize';
 import './search.css';
-import escapeRegExp from 'escape-string-regexp';
-import sortBy from 'sort-by';
 import { search as bookSearch} from './BooksAPI';
 import Shelf from './Shelf'
 
@@ -24,10 +21,6 @@ class Search extends Component {
             })
         }
     }
-
-    /* 
-     * TODO: Refine search with sort, etc 
-     */
 
     resetQuery = () => {
         this.setState({ query: '' });

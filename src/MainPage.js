@@ -16,24 +16,33 @@ class MainPage extends Component {
         })
     }
 
+    update = () => {
+        getAll().then(( books ) => {
+            this.setState({ allBooks: books})
+        })
+    }
+
     render() {
         return (
           <Page>
             <Header title="MyReads" />
             <Body>
                 <Shelf 
+                    updateMain = {this.update}
                     shelfName="Currently Reading"
                     books = {this.state.allBooks.filter(( book ) => (
                         book.shelf === 'currentlyReading'
                     ))}
                 />
                 <Shelf
+                    updateMain = {this.update}
                     shelfName="Want to Read"
                     books = {this.state.allBooks.filter(( book ) => (
                         book.shelf === 'wantToRead'
                     ))}
                 />
                 <Shelf
+                    updateMain = {this.update}
                     shelfName="Have Read"
                     books = {this.state.allBooks.filter(( book ) => (
                         book.shelf === 'read'

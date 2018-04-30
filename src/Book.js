@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import './book.css';
+import { update } from './BooksAPI';
 
 class Book extends Component {
     state = {
@@ -19,10 +20,21 @@ class Book extends Component {
     }
 
     closeMenu(event) {
-        if (!this.dropdownMenu.contains(event.target)) {
+        if (this.dropdownMenu &&
+            !this.dropdownMenu.contains(event.target)) {
             this.setState({ showMenu: false }, () => {
                 document.removeEventListener('click', this.closeMenu);
             });
+        }
+    }
+
+    addToShelf = ( name, shelf ) => {
+        console.log(name);
+        update( name, shelf )
+        .then(( response ) => console.log('updated', response))
+
+        if (this.props.updateMain) {
+            this.props.updateMain();
         }
     }
     
@@ -47,10 +59,21 @@ class Book extends Component {
                                 }}
                             >
                                 <button>Move to:</button>
-                                <button>Currently Reading</button>
-                                <button>Want to Read</button>
-                                <button>Have Read</button>
-                                <button>None</button>
+                                <button onClick={() => 
+                                    this.addToShelf({ id: this.props.id }, 'currentlyReading')}>
+                                    Currently Reading
+                                </button>
+                                <button onClick={() => 
+                                    this.addToShelf({ id: this.props.id }, 'wantToRead')}>
+                                    Want to Read
+                                    </button>
+                                <button onClick={() => 
+                                    this.addToShelf({ id: this.props.id }, 'read')}>
+                                    Have Read
+                                </button>
+                                <button>
+                                    None
+                                </button>
                             </div> 
                             ) 
                             : (
