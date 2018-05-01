@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Page, Header, Body, Footer } from './Page';
-import { get, getAll, update, search } from './BooksAPI';
+import { getAll } from './BooksAPI';
 import Shelf from './Shelf';
 import './misc.css';
 

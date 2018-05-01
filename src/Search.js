@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import './search.css';
 import { search as bookSearch} from './BooksAPI';
-import Shelf from './Shelf'
+import Shelf from './Shelf';
 
 class Search extends Component {
     state = {
@@ -12,25 +12,31 @@ class Search extends Component {
 
     handleChange = event => {
         this.setState({ query: event.target.value });
+        const { query } = this.state;
 
-        if (this.state.query) {
-            bookSearch(this.state.query).then(( books ) => {
-                if (books[0].author !== null) {
-                    this.updateSearchedBooks(books);
-                }
-            })
-        }
+            if (query) {
+                bookSearch(query).then(
+                    response => {
+                        if (response.error) {
+                            this.resetSearchedBooks();
+                        } else {
+                            this.updateSearchedBooks(response);
+                    }
+                })
+            } else if (query === '') {
+                this.resetSearchedBooks();
+            }
     }
 
     resetQuery = () => {
         this.setState({ query: '' });
     }
 
-    resetBooks = () => {
+    resetSearchedBooks = () => {
         this.setState({ searchedBooks: [] });
     }
 
-    updateSearchedBooks = books => {
+    updateSearchedBooks = books => {    
         this.setState({ searchedBooks: books });
     }
 
@@ -55,13 +61,19 @@ class Search extends Component {
                         />
                     </form>
                 </section>
+                <section className="search-shelf">    
                     {this.state.searchedBooks.length > 0 && (
                         <Shelf 
                             shelfName="Search results"
                             books={this.state.searchedBooks}
                         />
                     )}
-                
+                    {this.state.searchedBooks.length <= 1 && (
+                        <h3 className="no-results-header">
+                            No results
+                        </h3>
+                    )}
+                </section>
             </Fragment>
         )
     }

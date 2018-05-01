@@ -11,7 +11,7 @@ class Shelf extends Component {
                         {this.props.books.map(( book ) => (
                             <Book 
                                 updateMain = {this.props.updateMain}
-                                coverURL = {book.imageLinks.thumbnail}
+                                coverURL = {book.imageLinks ? book.imageLinks.thumbnail : 'http://via.placeholder.com/150x200'}
                                 author = {book.authors}
                                 title = {book.title}
                                 key = {book.id}

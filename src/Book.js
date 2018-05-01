@@ -45,13 +45,15 @@ class Book extends Component {
         return (
             <article className="book">
                 <figure>
-                    <img src={this.props.coverURL} alt="book cover" />
+                    {this.props.coverURL && (
+                        <img src={this.props.coverURL} alt="book cover" />
+                    )}
                     <div className="book-dropbtn-container">
                         <button 
                             className="book-dropbtn"
                             onClick={this.showMenu}
                         >+</button>
-                        {this.state.showMenu ? ( 
+                        {this.state.showMenu && ( 
                             <div 
                                 className="menu"
                                 ref={(element) => {
@@ -60,7 +62,8 @@ class Book extends Component {
                             >
                                 <button>Move to:</button>
                                 <button onClick={() => 
-                                    this.addToShelf({ id: this.props.id }, 'currentlyReading')}>
+                                    this.addToShelf({ id: this.props.id }, 'currentlyReading')}
+                                    >
                                     Currently Reading
                                 </button>
                                 <button onClick={() => 
@@ -71,36 +74,32 @@ class Book extends Component {
                                     this.addToShelf({ id: this.props.id }, 'read')}>
                                     Have Read
                                 </button>
-                                <button>
+                                <button onClick={() => 
+                                    this.addToShelf({ id: this.props.id }, 'none')}>
                                     None
                                 </button>
                             </div> 
-                            ) 
-                            : (
-                                null
                             )
                         }
                     </div>
                     <figcaption>
-                        <p className="book-title">
+                        {this.props.title && (<p className="book-title">
                             {this.props.title}
-                        </p>
-                        {this.props.hasOwnProperty('author') ? (
+                        </p>)}
+                        {this.props.author && (
                             <div className="book-author">
                                 {this.props.author.map(( author ) => (
                                     <p key={author}>{author}</p>
                                 ))} 
-                            </div> 
-                            ) : this.props.hasOwnProperty('authors') ? (
-                                <div className="book-author">
+                            </div>
+                        )}
+                        {this.props.authors && (
+                            <div className="book-author">
                                 {this.props.authors.map(( author ) => (
                                     <p key={author}>{author}</p>
                                 ))} 
-                            </div> 
-                            ) : (
-                                null
-                            )
-                        }
+                            </div>
+                        )}  
                     </figcaption>    
                 </figure>
             </article>
