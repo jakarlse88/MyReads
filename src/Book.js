@@ -60,21 +60,24 @@ class Book extends Component {
                                     this.dropdownMenu = element;
                                 }}
                             >
-                                <button>Move to:</button>
-                                <button onClick={() => 
-                                    this.addToShelf({ id: this.props.id }, 'currentlyReading')}
-                                    >
+                                <button disabled>Move to:</button>
+                                <button
+                                    onClick={() => 
+                                    this.addToShelf({ id: this.props.id }, 'currentlyReading')}>
                                     Currently Reading
                                 </button>
-                                <button onClick={() => 
+                                <button
+                                    onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'wantToRead')}>
                                     Want to Read
                                     </button>
-                                <button onClick={() => 
+                                <button
+                                    onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'read')}>
                                     Have Read
                                 </button>
-                                <button onClick={() => 
+                                <button
+                                    onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'none')}>
                                     None
                                 </button>
@@ -86,13 +89,6 @@ class Book extends Component {
                         {this.props.title && (<p className="book-title">
                             {this.props.title}
                         </p>)}
-                        {this.props.author && (
-                            <div className="book-author">
-                                {this.props.author.map(( author ) => (
-                                    <p key={author}>{author}</p>
-                                ))} 
-                            </div>
-                        )}
                         {this.props.authors && (
                             <div className="book-author">
                                 {this.props.authors.map(( author ) => (

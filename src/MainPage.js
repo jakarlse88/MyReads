@@ -27,7 +27,8 @@ class MainPage extends Component {
           <Page>
             <Header title="MyReads" />
             <Body>
-                <Shelf 
+                <Shelf
+                    id = 'currentlyReading' 
                     updateMain = {this.update}
                     shelfName="Currently Reading"
                     books = {this.state.allBooks.filter(( book ) => (
@@ -35,6 +36,7 @@ class MainPage extends Component {
                     ))}
                 />
                 <Shelf
+                    id = 'wantToRead'
                     updateMain = {this.update}
                     shelfName="Want to Read"
                     books = {this.state.allBooks.filter(( book ) => (
@@ -42,6 +44,7 @@ class MainPage extends Component {
                     ))}
                 />
                 <Shelf
+                    id = 'read'
                     updateMain = {this.update}
                     shelfName="Have Read"
                     books = {this.state.allBooks.filter(( book ) => (
@@ -49,6 +52,7 @@ class MainPage extends Component {
                     ))}
                 />
                 <Link
+                    id = 'none'
                     to="/search"
                     className="search-page-btn"
                 >Search</Link>

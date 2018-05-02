@@ -16,6 +16,9 @@ class Shelf extends Component {
                                 title = {book.title}
                                 key = {book.id}
                                 id = {book.id}
+                                shelf = {this.props.id === 'currentlyReading' ? 'currentlyReading' : 
+                                        'wantToRead' ? 'wantToRead' : 
+                                        'read' ? 'read' : 'none'}
                             />
                         ))}
                     </div>

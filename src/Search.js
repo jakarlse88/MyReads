@@ -1,43 +1,28 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import './search.css';
-import { search as bookSearch} from './BooksAPI';
+import * as BooksAPI from './BooksAPI';
 import Shelf from './Shelf';
+import escapeRegExp from 'escape-string-regexp';
 
 class Search extends Component {
     state = {
         query: '',
-        searchedBooks: []
+        books: []
     }
 
-    handleChange = event => {
-        this.setState({ query: event.target.value });
-        const { query } = this.state;
-
-            if (query) {
-                bookSearch(query).then(
-                    response => {
-                        if (response.error) {
-                            this.resetSearchedBooks();
-                        } else {
-                            this.updateSearchedBooks(response);
-                    }
-                })
-            } else if (query === '') {
-                this.resetSearchedBooks();
-            }
+    updateQuery = query => {
+        this.setState({ query: query });
+        
+        if (!query) {
+            this.setState({
+                books: []
+            });
+        }
     }
 
     resetQuery = () => {
         this.setState({ query: '' });
-    }
-
-    resetSearchedBooks = () => {
-        this.setState({ searchedBooks: [] });
-    }
-
-    updateSearchedBooks = books => {    
-        this.setState({ searchedBooks: books });
     }
 
     handleSubmit = event => {
@@ -45,6 +30,34 @@ class Search extends Component {
     }
 
     render() {
+        const query  = this.state.query.trim();
+        let showingBooks;
+
+        if (query) {
+            BooksAPI.search(query).then(
+                response => {
+                    if (response.error) {
+                        console.log('error', response);
+                    } else {
+                        if (query === this.state.query) {
+                            this.setState({
+                                books: response
+                            });
+                        }
+                    }
+                }
+            ).catch(err => {
+                console.log('error', err);
+            })
+        }
+
+        if (this.state.books) {
+            const match = new RegExp(escapeRegExp(this.state.query), 'i');
+            showingBooks = this.state.books.filter(book => match.test(book.title));
+        } else {
+            showingBooks = [];
+        }
+
         return (
             <Fragment>
                 <section className="search-books-container">
@@ -57,18 +70,18 @@ class Search extends Component {
                             type="text"
                             placeholder="Search by book title or author name"
                             value={this.state.query}
-                            onChange={this.handleChange}
+                            onChange={event => this.updateQuery(event.target.value)}
                         />
                     </form>
                 </section>
                 <section className="search-shelf">    
-                    {this.state.searchedBooks.length > 0 && (
+                    {showingBooks.length > 0 && (
                         <Shelf 
                             shelfName="Search results"
-                            books={this.state.searchedBooks}
+                            books={showingBooks}
                         />
                     )}
-                    {this.state.searchedBooks.length <= 1 && (
+                    {showingBooks.length < 1 && (
                         <h3 className="no-results-header">
                             No results
                         </h3>
