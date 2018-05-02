@@ -61,26 +61,26 @@ class Book extends Component {
                                 }}
                             >
                                 <button disabled>Move to:</button>
-                                <button
+                                <option
                                     onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'currentlyReading')}>
                                     Currently Reading
-                                </button>
-                                <button
+                                </option>
+                                <option
                                     onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'wantToRead')}>
                                     Want to Read
-                                    </button>
-                                <button
+                                    </option>
+                                <option
                                     onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'read')}>
                                     Have Read
-                                </button>
-                                <button
+                                </option>
+                                <option
                                     onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'none')}>
                                     None
-                                </button>
+                                </option>
                             </div> 
                             )
                         }
