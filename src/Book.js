@@ -7,26 +7,6 @@ import './book.css';
 import { update } from './BooksAPI';
 
 class Book extends Component {
-    state = {
-        showMenu: false
-    };
-
-    showMenu(event) {
-        event.preventDefault();
-
-        this.setState({ showMenu: true }, () => {
-            document.addEventListener('click', this.closeMenu);
-        })
-    }
-
-    closeMenu(event) {
-        if (this.dropdownMenu &&
-            !this.dropdownMenu.contains(event.target)) {
-            this.setState({ showMenu: false }, () => {
-                document.removeEventListener('click', this.closeMenu);
-            });
-        }
-    }
 
     addToShelf = ( name, shelf ) => {
         console.log(name);
@@ -37,9 +17,6 @@ class Book extends Component {
             this.props.updateMain();
         }
     }
-    
-    showMenu = this.showMenu.bind(this);
-    closeMenu = this.closeMenu.bind(this);
 
     render() {
         return (
@@ -48,50 +25,46 @@ class Book extends Component {
                     {this.props.coverURL && (
                         <img src={this.props.coverURL} alt="book cover" />
                     )}
-                    <div className="book-dropbtn-container">
-                        <button 
-                            className="book-dropbtn"
-                            onClick={this.showMenu}
-                        >+</button>
-                        {this.state.showMenu && ( 
-                            <div 
-                                className="menu"
-                                ref={(element) => {
-                                    this.dropdownMenu = element;
-                                }}
-                            >
-                                <button disabled>Move to:</button>
+                    <div className="select-container-container">
+                        <div className="select-container">
+                            <select
+                                onChange={e => e.preventDefault()} // quit whining, React
+                                value = {this.props.shelf}>
+                                <option disabled>Move to:</option>
                                 <option
+                                    value="currentlyReading"
                                     onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'currentlyReading')}>
                                     Currently Reading
                                 </option>
                                 <option
+                                    value="wantToRead"
                                     onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'wantToRead')}>
                                     Want to Read
                                     </option>
                                 <option
+                                    value="read"
                                     onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'read')}>
                                     Have Read
                                 </option>
                                 <option
+                                    value="none"
                                     onClick={() => 
                                     this.addToShelf({ id: this.props.id }, 'none')}>
                                     None
                                 </option>
-                            </div> 
-                            )
-                        }
+                            </select> 
+                        </div>
                     </div>
                     <figcaption>
                         {this.props.title && (<p className="book-title">
                             {this.props.title}
                         </p>)}
-                        {this.props.authors && (
+                        {this.props.author && (
                             <div className="book-author">
-                                {this.props.authors.map(( author ) => (
+                                {this.props.author.map(( author ) => (
                                     <p key={author}>{author}</p>
                                 ))} 
                             </div>

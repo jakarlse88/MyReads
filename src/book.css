@@ -41,6 +41,9 @@
     position: relative;
 }
 
+/*
+ * Icon, related code from starter files
+ */
 .book-dropbtn {
     border: 2px solid green;
     background-color: green;
@@ -81,7 +84,7 @@
     flex-direction: column;
 }
 
-.menu button {
+.menu option {
     width: 150px;
     border: none;
     font-size: .9em;
@@ -91,22 +94,70 @@
     color: white;
 }
 
-.menu button:hover {
+.menu option:hover {
     background-color: white;
     color: #333;
 }
 
-.menu button:active {
+.menu option:selected {
+    color: yellow;
+}
+
+.menu option:active {
     background-color: white;
     color: #333;
 }
 
-.menu button:first-of-type {
+.menu option:first-of-type {
     color: grey;
     cursor: auto;
 }
 
-.menu button:first-of-type:hover {
+.menu option:first-of-type:hover {
     background-color: #333;
     color: grey;
+}
+
+.select-container-container {
+    width: 100%;
+    position: relative;
+}
+
+/* Partly from starter files */
+.select-container {
+    border: 2px solid green;
+    background: green;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: -10%;
+    bottom: -10px;
+    cursor: pointer;
+    background-image: url('./icons/plus.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+.select-container select {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    background: green;
+}
+
+.select-container select option {
+    color: white;
+}
+
+.select-container select option:disabled {
+    color: lightgrey;
 }

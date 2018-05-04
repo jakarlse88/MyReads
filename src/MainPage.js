@@ -1,27 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Page, Header, Body, Footer } from './Page';
-import { getAll } from './BooksAPI';
 import Shelf from './Shelf';
 import './misc.css';
 
 class MainPage extends Component {
-    state = {
-        allBooks: []
-    };
-
-    componentDidMount() {
-        getAll().then(( books ) => {
-            this.setState({ allBooks: books})
-        })
-    }
-
-    update = () => {
-        getAll().then(( books ) => {
-            this.setState({ allBooks: books})
-        })
-    }
-
     render() {
         return (
           <Page>
@@ -29,33 +12,29 @@ class MainPage extends Component {
             <Body>
                 <Shelf
                     id = 'currentlyReading' 
-                    updateMain = {this.update}
+                    updateMain = {this.props.updateMain}
                     shelfName="Currently Reading"
-                    books = {this.state.allBooks.filter(( book ) => (
-                        book.shelf === 'currentlyReading'
-                    ))}
+                    books = {this.props.books.currentlyReading}
                 />
                 <Shelf
                     id = 'wantToRead'
-                    updateMain = {this.update}
+                    updateMain = {this.props.updateMain}
                     shelfName="Want to Read"
-                    books = {this.state.allBooks.filter(( book ) => (
-                        book.shelf === 'wantToRead'
-                    ))}
+                    books = {this.props.books.wantToRead}
                 />
                 <Shelf
                     id = 'read'
-                    updateMain = {this.update}
+                    updateMain = {this.props.updateMain}
                     shelfName="Have Read"
-                    books = {this.state.allBooks.filter(( book ) => (
-                        book.shelf === 'read'
-                    ))}
+                    books = {this.props.books.read}
                 />
                 <Link
                     id = 'none'
                     to="/search"
                     className="search-page-btn"
-                >Search</Link>
+                >
+                    Search
+                </Link>
                 <Footer content="A FEND Project" />
             </Body>
         </Page>

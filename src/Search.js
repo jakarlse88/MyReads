@@ -8,34 +8,21 @@ import escapeRegExp from 'escape-string-regexp';
 class Search extends Component {
     state = {
         query: '',
-        books: []
+        books: [],
     }
 
     updateQuery = query => {
         this.setState({ query: query });
+        const newQuery  = this.state.query.trim();
         
-        if (!query) {
+        if (!newQuery) {
             this.setState({
                 books: []
             });
-        }
-    }
-
-    resetQuery = () => {
-        this.setState({ query: '' });
-    }
-
-    handleSubmit = event => {
-        event.preventDefault();
-    }
-
-    render() {
-        const query  = this.state.query.trim();
-        let showingBooks;
-
-        if (query) {
-            BooksAPI.search(query).then(
+        } else {
+            BooksAPI.search(newQuery).then(
                 response => {
+                    console.log(response);
                     if (response.error) {
                         console.log('error', response);
                     } else {
@@ -50,6 +37,14 @@ class Search extends Component {
                 console.log('error', err);
             })
         }
+    }
+
+    handleSubmit = event => {
+        event.preventDefault();
+    }
+
+    render() {
+        let showingBooks;
 
         if (this.state.books) {
             const match = new RegExp(escapeRegExp(this.state.query), 'i');
