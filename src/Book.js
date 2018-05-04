@@ -13,9 +13,8 @@ class Book extends Component {
         update( name, shelf )
         .then(( response ) => console.log('updated', response))
 
-        if (this.props.updateMain) {
-            this.props.updateMain();
-        }
+        this.props.updateMain();
+        
     }
 
     render() {
@@ -34,25 +33,25 @@ class Book extends Component {
                                 <option
                                     value="currentlyReading"
                                     onClick={() => 
-                                    this.addToShelf({ id: this.props.id }, 'currentlyReading')}>
+                                        this.addToShelf({ id: this.props.id }, 'currentlyReading')}>
                                     Currently Reading
                                 </option>
                                 <option
                                     value="wantToRead"
                                     onClick={() => 
-                                    this.addToShelf({ id: this.props.id }, 'wantToRead')}>
+                                        this.addToShelf({ id: this.props.id }, 'wantToRead')}>
                                     Want to Read
                                     </option>
                                 <option
                                     value="read"
                                     onClick={() => 
-                                    this.addToShelf({ id: this.props.id }, 'read')}>
+                                        this.addToShelf({ id: this.props.id }, 'read')}>
                                     Have Read
                                 </option>
                                 <option
                                     value="none"
                                     onClick={() => 
-                                    this.addToShelf({ id: this.props.id }, 'none')}>
+                                        this.addToShelf({ id: this.props.id }, 'none')}>
                                     None
                                 </option>
                             </select> 

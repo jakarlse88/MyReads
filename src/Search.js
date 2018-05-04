@@ -27,9 +27,7 @@ class Search extends Component {
                         console.log('error', response);
                     } else {
                         if (query === this.state.query) {
-                            this.setState({
-                                books: response
-                            });
+                            this.updateBooks(response);
                         }
                     }
                 }
@@ -37,6 +35,25 @@ class Search extends Component {
                 console.log('error', err);
             })
         }
+    }
+
+    /*
+     * https://github.com/keyvhinng/myreads/blob/master/src/SearchPage.js
+     */
+    updateBooks = books => {
+        const updatedBooks = books.map( book => {
+            book.shelf = 'none';
+            
+            this.props.shelvedBooks.forEach(shelvedBook => {
+                if (book.id === shelvedBook.id) {
+                    book.shelf = shelvedBook.shelf;
+                }
+            });
+            return book;
+        });
+        this.setState({
+            books: updatedBooks
+        });
     }
 
     handleSubmit = event => {
@@ -72,8 +89,10 @@ class Search extends Component {
                 <section className="search-shelf">    
                     {showingBooks.length > 0 && (
                         <Shelf 
-                            shelfName="Search results"
-                            books={showingBooks}
+                            updateMain = {this.props.updateMain}
+                            shelfName = "Search results"
+                            books = {showingBooks}
+                            comparison = {this.props.books}
                         />
                     )}
                     {showingBooks.length < 1 && (

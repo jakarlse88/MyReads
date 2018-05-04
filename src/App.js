@@ -9,28 +9,32 @@ class App extends Component {
 	state = {
 		currentlyReading: [],
 		wantToRead: [],
-		read: []
-};
+		read: [],
+		allBooks: []
+	};
 
-componentDidMount() {
+	componentDidMount = () => {
 		BooksAPI.getAll().then(( books ) => {
 				this.setState({ 
 						currentlyReading: books.filter( book => book.shelf === 'currentlyReading'),
 						wantToRead: books.filter( book => book.shelf === 'wantToRead'),
-						read: books.filter( book => book.shelf === 'read')
+						read: books.filter( book => book.shelf === 'read'),
+						allBooks: books
 				});
 		});
-}
+	}
 
-update = () => {
+	update = () => {
 		BooksAPI.getAll().then(( books ) => {
 				this.setState({ 
 						currentlyReading: books.filter( book => book.shelf === 'currentlyReading'),
 						wantToRead: books.filter( book => book.shelf === 'wantToRead'),
-						read: books.filter( book => book.shelf === 'read')
+						read: books.filter( book => book.shelf === 'read'),
+						allBooks: books
 				});
 		});
 }
+
 
   render() {
     return (
@@ -45,7 +49,7 @@ update = () => {
 				/>
 				<Route exact path="/search" render={() => (
 					<Search
-						books = {this.state}
+						shelvedBooks = {this.state.allBooks}
 						updateMain = {this.update}
 					/>
 				)}
