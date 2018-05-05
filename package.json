@@ -3,11 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.5",
-    "@fortawesome/fontawesome-free-solid": "^5.0.10",
-    "@fortawesome/react-fontawesome": "^0.0.18",
-    "escape-string-regexp": "^1.0.5",
-    "font-awesome": "^4.7.0",
     "form-serialize": "^0.7.2",
     "npm": "^6.0.0",
     "prop-types": "^15.6.1",
@@ -16,7 +11,8 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "react-throttle": "^0.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

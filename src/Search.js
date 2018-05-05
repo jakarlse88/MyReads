@@ -4,6 +4,7 @@ import './search.css';
 import * as BooksAPI from './BooksAPI';
 import Shelf from './Shelf';
 import escapeRegExp from 'escape-string-regexp';
+import { Debounce } from 'react-throttle';
 
 class Search extends Component {
     state = {
@@ -77,14 +78,15 @@ class Search extends Component {
                         to="/"
                         className="search-return-arrow" 
                     >&lt;</Link>
-                    <form onSubmit={this.handleSubmit} className="search-books">
-                        <input
-                            type="text"
-                            placeholder="Search by book title or author name"
-                            value={this.state.query}
-                            onChange={event => this.updateQuery(event.target.value)}
-                        />
-                    </form>
+                    <div className="search-books">
+                        <Debounce time="400" handler="onChange">
+                            <input
+                                type="text"
+                                placeholder="Search by book title or author name"
+                                onChange={event => this.updateQuery(event.target.value)}
+                            />
+                        </Debounce>
+                    </div>
                 </section>
                 <section className="search-shelf">    
                     {showingBooks.length > 0 && (

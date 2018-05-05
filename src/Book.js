@@ -2,14 +2,13 @@
  * https://blog.campvanilla.com/reactjs-dropdown-menus-b6e06ae3a8fe
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './book.css';
 import { update } from './BooksAPI';
 
-class Book extends Component {
+class Book extends PureComponent {
 
     addToShelf = ( name, shelf ) => {
-        console.log(name);
         update( name, shelf )
         .then(( response ) => console.log('updated', response))
 
@@ -27,33 +26,13 @@ class Book extends Component {
                     <div className="select-container-container">
                         <div className="select-container">
                             <select
-                                onChange={e => e.preventDefault()} // quit whining, React
+                                onChange={e => this.addToShelf({ id: this.props.id }, e.target.value)}
                                 value = {this.props.shelf}>
                                 <option disabled>Move to:</option>
-                                <option
-                                    value="currentlyReading"
-                                    onClick={() => 
-                                        this.addToShelf({ id: this.props.id }, 'currentlyReading')}>
-                                    Currently Reading
-                                </option>
-                                <option
-                                    value="wantToRead"
-                                    onClick={() => 
-                                        this.addToShelf({ id: this.props.id }, 'wantToRead')}>
-                                    Want to Read
-                                    </option>
-                                <option
-                                    value="read"
-                                    onClick={() => 
-                                        this.addToShelf({ id: this.props.id }, 'read')}>
-                                    Have Read
-                                </option>
-                                <option
-                                    value="none"
-                                    onClick={() => 
-                                        this.addToShelf({ id: this.props.id }, 'none')}>
-                                    None
-                                </option>
+                                <option value="currentlyReading">Currently Reading</option>
+                                <option value="wantToRead">Want to Read</option>
+                                <option value="read">Have Read</option>
+                                <option value="none">None</option>
                             </select> 
                         </div>
                     </div>

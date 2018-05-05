@@ -13,28 +13,27 @@ class App extends Component {
 		allBooks: []
 	};
 
-	componentDidMount = () => {
-		BooksAPI.getAll().then(( books ) => {
-				this.setState({ 
-						currentlyReading: books.filter( book => book.shelf === 'currentlyReading'),
-						wantToRead: books.filter( book => book.shelf === 'wantToRead'),
-						read: books.filter( book => book.shelf === 'read'),
-						allBooks: books
-				});
+	componentDidMount = async () => {
+		const books = await BooksAPI.getAll();
+
+		this.setState({ 
+			currentlyReading: books.filter( book => book.shelf === 'currentlyReading'),
+			wantToRead: books.filter( book => book.shelf === 'wantToRead'),
+			read: books.filter( book => book.shelf === 'read'),
+			allBooks: books
 		});
 	}
 
-	update = () => {
-		BooksAPI.getAll().then(( books ) => {
-				this.setState({ 
-						currentlyReading: books.filter( book => book.shelf === 'currentlyReading'),
-						wantToRead: books.filter( book => book.shelf === 'wantToRead'),
-						read: books.filter( book => book.shelf === 'read'),
-						allBooks: books
-				});
-		});
-}
+	update = async () => {
+		const books = await BooksAPI.getAll();
 
+		this.setState({
+			currentlyReading: books.filter( book => book.shelf === 'currentlyReading'),
+			wantToRead: books.filter( book => book.shelf === 'wantToRead'),
+			read: books.filter( book => book.shelf === 'read'),
+			allBooks: books
+		});
+	}
 
   render() {
     return (
